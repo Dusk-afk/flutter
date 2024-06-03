@@ -127,6 +127,7 @@ class CupertinoSearchTextField extends StatefulWidget {
     this.onTap,
     this.autocorrect = true,
     this.enabled,
+    this.cursorColor,
   })  : assert(
           !((decoration != null) && (backgroundColor != null)),
           'Cannot provide both a background color and a decoration\n'
@@ -321,6 +322,14 @@ class CupertinoSearchTextField extends StatefulWidget {
   /// respond to touch events including the [prefixIcon] and [suffixIcon] button.
   final bool? enabled;
 
+  /// The color to use when painting the cursor.
+  ///
+  /// Defaults to the [DefaultSelectionStyle.cursorColor]. If that color is
+  /// null, it uses the [CupertinoThemeData.primaryColor] of the ambient theme,
+  /// which itself defaults to [CupertinoColors.activeBlue] in the light theme
+  /// and [CupertinoColors.activeOrange] in the dark theme.
+  final Color? cursorColor;
+
   @override
   State<StatefulWidget> createState() => _CupertinoSearchTextFieldState();
 }
@@ -466,6 +475,7 @@ class _CupertinoSearchTextFieldState extends State<CupertinoSearchTextField>
       smartDashesType: widget.smartDashesType,
       enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
       textInputAction: TextInputAction.search,
+      cursorColor: widget.cursorColor,
     );
   }
 }
