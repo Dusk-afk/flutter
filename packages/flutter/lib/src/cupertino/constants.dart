@@ -17,4 +17,4 @@ library;
 ///
 ///  * [kMinInteractiveDimension]
 ///  * <https://developer.apple.com/ios/human-interface-guidelines/visual-design/adaptivity-and-layout/>
-const double kMinInteractiveDimensionCupertino = 44.0;
+const double kMinInteractiveDimensionCupertino = 54.0;
