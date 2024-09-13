@@ -135,6 +135,7 @@ Widget _wrapWithBackground({
   Brightness? brightness,
   required Widget child,
   bool updateSystemUiOverlay = true,
+  double blurIntensity = 10.0,
 }) {
   Widget result = child;
   if (updateSystemUiOverlay) {
@@ -175,7 +176,7 @@ Widget _wrapWithBackground({
 
   return ClipRect(
     child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+      filter: ImageFilter.blur(sigmaX: blurIntensity, sigmaY: blurIntensity),
       child: childWithBackground,
     ),
   );
@@ -261,6 +262,7 @@ class CupertinoNavigationBar extends StatefulWidget implements ObstructingPrefer
     this.padding,
     this.transitionBetweenRoutes = true,
     this.heroTag = _defaultHeroTag,
+    this.blurIntensity = 10.0,
   }) : assert(
          !transitionBetweenRoutes || identical(heroTag, _defaultHeroTag),
          'Cannot specify a heroTag override if this navigation bar does not '
@@ -409,6 +411,8 @@ class CupertinoNavigationBar extends StatefulWidget implements ObstructingPrefer
   /// {@endtemplate}
   final Object heroTag;
 
+  final double blurIntensity;
+
   /// True if the navigation bar's background color has no transparency.
   @override
   bool shouldFullyObstruct(BuildContext context) {
@@ -461,6 +465,7 @@ class _CupertinoNavigationBarState extends State<CupertinoNavigationBar> {
       border: widget.border,
       backgroundColor: backgroundColor,
       brightness: widget.brightness,
+      blurIntensity: widget.blurIntensity,
       child: DefaultTextStyle(
         style: CupertinoTheme.of(context).textTheme.textStyle,
         child: _PersistentNavigationBar(
